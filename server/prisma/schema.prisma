@@ -1,0 +1,257 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id                 Int                  @id @default(autoincrement())
+  username           String?              @unique @db.VarChar(255)
+  first_name         String?              @db.VarChar(255)
+  last_name          String?              @db.VarChar(255)
+  avatar_url         String?              @db.VarChar(255)
+  password_hash      String               @db.VarChar(255)
+  email              String?              @unique @db.VarChar(255)
+  roles              user_role?
+  created_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  mobile_number      String?              @unique @db.VarChar(15)
+  events             events[]
+  payment_refunds    payment_refunds[]
+  payments           payments[]
+  reviews            reviews[]
+  user_registrations user_registrations[]
+  user_tickets       user_tickets[]
+  user_wishlists     user_wishlists[]
+  vendors            vendors[]
+}
+
+model events {
+  id                 Int                  @id @default(autoincrement())
+  name               String               @db.VarChar(255)
+  description        String
+  start_date_time    DateTime?            @db.Timestamptz(6)
+  end_date_time      DateTime?            @db.Timestamptz(6)
+  vendor_id          Int?
+  event_type         event_type
+  event_format       event_format
+  event_status       String?              @default("pending") @db.VarChar(50)
+  tags               String[]
+  created_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  users              users?               @relation(fields: [vendor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  payment_refunds    payment_refunds[]
+  payments           payments[]
+  recurrence_rules   recurrence_rules[]
+  revenue_analytics  revenue_analytics[]
+  reviews            reviews[]
+  ticket_types       ticket_types[]
+  user_registrations user_registrations[]
+  user_tickets       user_tickets[]
+  user_wishlists     user_wishlists[]
+  venues             venues[]
+}
+
+model payment_refunds {
+  id         Int            @id @default(autoincrement())
+  user_id    Int?
+  event_id   Int?
+  amount     Decimal        @db.Decimal(10, 2)
+  method     payment_method
+  status     String         @db.VarChar(255)
+  created_at DateTime?      @default(now()) @db.Timestamptz(6)
+  updated_at DateTime?      @default(now()) @db.Timestamptz(6)
+  events     events?        @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users?         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model payments {
+  id           Int            @id @default(autoincrement())
+  user_id      Int?
+  event_id     Int?
+  amount       Decimal        @db.Decimal(10, 2)
+  method       payment_method
+  currency     String         @db.VarChar(10)
+  status       String         @db.VarChar(255)
+  created_at   DateTime?      @default(now()) @db.Timestamptz(6)
+  updated_at   DateTime?      @default(now()) @db.Timestamptz(6)
+  events       events?        @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users        users?         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user_tickets user_tickets[]
+}
+
+model recurrence_rules {
+  id         Int       @id @default(autoincrement())
+  event_id   Int?
+  frequency  String    @db.VarChar(50)
+  interval   Int       @default(1)
+  week_days  String[]
+  month_day  Int?
+  month_week String[]
+  start_date DateTime  @db.Timestamp(6)
+  end_date   DateTime? @db.Timestamp(6)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  events     events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model revenue_analytics {
+  id                 Int       @id @default(autoincrement())
+  event_id           Int?
+  total_revenue      Decimal   @db.Decimal(10, 2)
+  total_tickets_sold Int
+  created_at         DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime? @default(now()) @db.Timestamptz(6)
+  events             events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model reviews {
+  id         Int       @id @default(autoincrement())
+  event_id   Int?
+  user_id    Int?
+  comment    String?
+  rating     Int?
+  visible    Boolean?  @default(true)
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  events     events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ticket_types {
+  id                 Int            @id @default(autoincrement())
+  event_id           Int?
+  ticket_type_name   String         @db.VarChar(255)
+  price              Decimal        @db.Decimal(10, 2)
+  quantity_available Int
+  created_at         DateTime?      @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime?      @default(now()) @db.Timestamptz(6)
+  events             events?        @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user_tickets       user_tickets[]
+}
+
+model user_registrations {
+  id                Int       @id @default(autoincrement())
+  user_id           Int?
+  event_id          Int?
+  registration_date DateTime? @db.Timestamptz(6)
+  created_at        DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime? @default(now()) @db.Timestamptz(6)
+  events            events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users             users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model user_tickets {
+  id                Int           @id @default(autoincrement())
+  buyer_id          Int?
+  event_id          Int?
+  ticket_type_id    Int?
+  payment_id        Int?
+  ticket_status     String        @db.VarChar(255)
+  confirmation_code String?       @db.VarChar(10)
+  qr_code_url       String?
+  purchase_date     DateTime?     @db.Timestamptz(6)
+  created_at        DateTime?     @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime?     @default(now()) @db.Timestamptz(6)
+  users             users?        @relation(fields: [buyer_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  events            events?       @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  payments          payments?     @relation(fields: [payment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  ticket_types      ticket_types? @relation(fields: [ticket_type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model user_wishlists {
+  id         Int       @id @default(autoincrement())
+  user_id    Int?
+  event_id   Int?
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at DateTime? @default(now()) @db.Timestamptz(6)
+  events     events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model vendors {
+  id                              Int            @id @default(autoincrement())
+  user_id                         Int
+  business_name                   String?        @db.VarChar(255)
+  business_type                   business_type?
+  business_address                String?
+  business_registration_number    String?        @db.VarChar(50)
+  tax_identification_number       String?        @db.VarChar(50)
+  value_added_tax_number          String?        @db.VarChar(50)
+  business_logo_url               String?
+  business_promotional_image_urls String[]
+  business_promotional_video_url  String?        @db.VarChar(255)
+  business_payment_details        Json?
+  business_legal_information      String?
+  account_status                  String?        @default("pending") @db.VarChar(50)
+  created_at                      DateTime?      @default(now()) @db.Timestamptz(6)
+  updated_at                      DateTime?      @default(now()) @db.Timestamptz(6)
+  users                           users?         @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model venues {
+  id              Int       @id @default(autoincrement())
+  event_id        Int?
+  name            String    @db.VarChar(255)
+  location        String
+  capacity        Int?
+  amenities       String[]
+  accessibility   String[]
+  age_restriction Boolean?
+  seatplan        Json?
+  created_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  events          events?   @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum user_role {
+  admin
+  vendor
+  buyer
+  artist
+}
+
+enum business_type {
+  event_organizer
+  venue_owner
+  service_provider
+}
+
+enum event_format {
+  conference
+  seminar
+  expo
+  convention
+  festival
+  performance
+  screening
+  gala
+  class
+  networking
+  party
+  rally
+  tournament
+  game
+  race
+  tour
+  attraction
+  retreat
+  appearance
+}
+
+enum event_type {
+  music
+  arts
+  sports
+}
+
+enum payment_method {
+  upi
+  credit_card
+  debit_card
+}
