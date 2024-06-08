@@ -1,0 +1,2022 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health-check": {
+      "get": {
+        "operationId": "AppController_getHealthChecking",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/users/profile": {
+      "get": {
+        "operationId": "UsersController_getUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user has been successfully logged in.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "AuthController_createUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterUserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/vendors": {
+      "post": {
+        "operationId": "VendorsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "vendors"
+        ]
+      },
+      "get": {
+        "operationId": "VendorsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "vendors"
+        ]
+      }
+    },
+    "/vendors/{id}": {
+      "get": {
+        "operationId": "VendorsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "vendors"
+        ]
+      },
+      "patch": {
+        "operationId": "VendorsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVendorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "vendors"
+        ]
+      },
+      "delete": {
+        "operationId": "VendorsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "vendors"
+        ]
+      }
+    },
+    "/events": {
+      "post": {
+        "operationId": "EventsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEventDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "get": {
+        "operationId": "EventsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "operationId": "EventsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "patch": {
+        "operationId": "EventsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEventDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "delete": {
+        "operationId": "EventsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      }
+    },
+    "/recurrence-rules": {
+      "post": {
+        "operationId": "RecurrenceRulesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRecurrenceRuleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "recurrence-rules"
+        ]
+      },
+      "get": {
+        "operationId": "RecurrenceRulesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "recurrence-rules"
+        ]
+      }
+    },
+    "/recurrence-rules/{id}": {
+      "get": {
+        "operationId": "RecurrenceRulesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "recurrence-rules"
+        ]
+      },
+      "patch": {
+        "operationId": "RecurrenceRulesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRecurrenceRuleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "recurrence-rules"
+        ]
+      },
+      "delete": {
+        "operationId": "RecurrenceRulesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "recurrence-rules"
+        ]
+      }
+    },
+    "/ticket-types": {
+      "post": {
+        "operationId": "TicketTypesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTicketTypeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ticket-types"
+        ]
+      },
+      "get": {
+        "operationId": "TicketTypesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ticket-types"
+        ]
+      }
+    },
+    "/ticket-types/{id}": {
+      "get": {
+        "operationId": "TicketTypesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ticket-types"
+        ]
+      },
+      "patch": {
+        "operationId": "TicketTypesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTicketTypeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ticket-types"
+        ]
+      },
+      "delete": {
+        "operationId": "TicketTypesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "ticket-types"
+        ]
+      }
+    },
+    "/venues": {
+      "post": {
+        "operationId": "VenuesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateVenueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "venues"
+        ]
+      },
+      "get": {
+        "operationId": "VenuesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "venues"
+        ]
+      }
+    },
+    "/venues/{id}": {
+      "get": {
+        "operationId": "VenuesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "venues"
+        ]
+      },
+      "patch": {
+        "operationId": "VenuesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateVenueDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "venues"
+        ]
+      },
+      "delete": {
+        "operationId": "VenuesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "venues"
+        ]
+      }
+    },
+    "/user-registrations": {
+      "post": {
+        "operationId": "UserRegistrationsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRegistrationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-registrations"
+        ]
+      },
+      "get": {
+        "operationId": "UserRegistrationsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-registrations"
+        ]
+      }
+    },
+    "/user-registrations/{id}": {
+      "get": {
+        "operationId": "UserRegistrationsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-registrations"
+        ]
+      },
+      "patch": {
+        "operationId": "UserRegistrationsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRegistrationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-registrations"
+        ]
+      },
+      "delete": {
+        "operationId": "UserRegistrationsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-registrations"
+        ]
+      }
+    },
+    "/user-wishlists": {
+      "post": {
+        "operationId": "UserWishlistsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserWishlistDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-wishlists"
+        ]
+      },
+      "get": {
+        "operationId": "UserWishlistsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-wishlists"
+        ]
+      }
+    },
+    "/user-wishlists/{id}": {
+      "get": {
+        "operationId": "UserWishlistsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-wishlists"
+        ]
+      },
+      "patch": {
+        "operationId": "UserWishlistsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserWishlistDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-wishlists"
+        ]
+      },
+      "delete": {
+        "operationId": "UserWishlistsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-wishlists"
+        ]
+      }
+    },
+    "/payments": {
+      "post": {
+        "operationId": "PaymentsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      },
+      "get": {
+        "operationId": "PaymentsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/payments/{id}": {
+      "get": {
+        "operationId": "PaymentsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      },
+      "patch": {
+        "operationId": "PaymentsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      },
+      "delete": {
+        "operationId": "PaymentsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payments"
+        ]
+      }
+    },
+    "/user-tickets": {
+      "post": {
+        "operationId": "UserTicketsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserTicketDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-tickets"
+        ]
+      },
+      "get": {
+        "operationId": "UserTicketsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-tickets"
+        ]
+      }
+    },
+    "/user-tickets/{id}": {
+      "get": {
+        "operationId": "UserTicketsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-tickets"
+        ]
+      },
+      "patch": {
+        "operationId": "UserTicketsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserTicketDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-tickets"
+        ]
+      },
+      "delete": {
+        "operationId": "UserTicketsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "user-tickets"
+        ]
+      }
+    },
+    "/payment-refunds": {
+      "post": {
+        "operationId": "PaymentRefundsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePaymentRefundDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payment-refunds"
+        ]
+      },
+      "get": {
+        "operationId": "PaymentRefundsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payment-refunds"
+        ]
+      }
+    },
+    "/payment-refunds/{id}": {
+      "get": {
+        "operationId": "PaymentRefundsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payment-refunds"
+        ]
+      },
+      "patch": {
+        "operationId": "PaymentRefundsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePaymentRefundDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payment-refunds"
+        ]
+      },
+      "delete": {
+        "operationId": "PaymentRefundsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "payment-refunds"
+        ]
+      }
+    },
+    "/reviews": {
+      "post": {
+        "operationId": "ReviewsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "reviews"
+        ]
+      },
+      "get": {
+        "operationId": "ReviewsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "reviews"
+        ]
+      }
+    },
+    "/reviews/{id}": {
+      "get": {
+        "operationId": "ReviewsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "reviews"
+        ]
+      },
+      "patch": {
+        "operationId": "ReviewsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "reviews"
+        ]
+      },
+      "delete": {
+        "operationId": "ReviewsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "reviews"
+        ]
+      }
+    },
+    "/revenue-analytics": {
+      "post": {
+        "operationId": "RevenueAnalyticsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRevenueAnalyticDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "revenue-analytics"
+        ]
+      },
+      "get": {
+        "operationId": "RevenueAnalyticsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "revenue-analytics"
+        ]
+      }
+    },
+    "/revenue-analytics/{id}": {
+      "get": {
+        "operationId": "RevenueAnalyticsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "revenue-analytics"
+        ]
+      },
+      "patch": {
+        "operationId": "RevenueAnalyticsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRevenueAnalyticDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "revenue-analytics"
+        ]
+      },
+      "delete": {
+        "operationId": "RevenueAnalyticsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "revenue-analytics"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "NestJS API",
+    "description": "API for NestJS",
+    "version": "1.0",
+    "contact": {
+
+    }
+  },
+  "tags": [
+    {
+      "name": "API",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "example": "password123",
+            "description": "The password of the user"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@example.com",
+            "description": "The email of the user"
+          }
+        },
+        "required": [
+          "password",
+          "email"
+        ]
+      },
+      "RegisterUserResponseDto": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "user": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "access_token",
+          "user"
+        ]
+      },
+      "CreateVendorDto": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the associated user"
+          },
+          "business_name": {
+            "type": "string",
+            "example": "Acme Corp",
+            "description": "Business name"
+          },
+          "business_type": {
+            "type": "string",
+            "example": "Technology",
+            "description": "Business type"
+          },
+          "contact_person_name": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Contact person name"
+          },
+          "contact_email": {
+            "type": "string",
+            "example": "contact@example.com",
+            "description": "Contact email"
+          },
+          "contact_phone": {
+            "type": "string",
+            "example": "+1234567890",
+            "description": "Contact phone"
+          },
+          "business_address": {
+            "type": "string",
+            "example": "123 Business St, Business City",
+            "description": "Business address"
+          },
+          "business_registration_number": {
+            "type": "string",
+            "example": "1234567890",
+            "description": "Business registration number"
+          },
+          "tax_identification_number": {
+            "type": "string",
+            "example": "1234567890",
+            "description": "Tax identification number"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the business"
+          },
+          "services": {
+            "type": "string",
+            "description": "Services offered by the business"
+          }
+        },
+        "required": [
+          "user_id",
+          "business_name",
+          "business_type",
+          "contact_person_name",
+          "contact_email",
+          "contact_phone",
+          "business_address",
+          "business_registration_number"
+        ]
+      },
+      "UpdateVendorDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateEventDto": {
+        "type": "object",
+        "properties": {
+          "vendor_id": {
+            "type": "number",
+            "example": 1,
+            "description": "ID of the event"
+          },
+          "name": {
+            "type": "string",
+            "example": "Tech Conference",
+            "description": "Name of the event"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the event"
+          },
+          "event_type": {
+            "type": "string",
+            "example": "Conference",
+            "description": "Type of the event"
+          },
+          "event_format": {
+            "type": "string",
+            "example": "Online",
+            "description": "Format of the event"
+          },
+          "recurring": {
+            "type": "boolean",
+            "example": false,
+            "description": "Whether the event is recurring"
+          }
+        },
+        "required": [
+          "vendor_id",
+          "name",
+          "description",
+          "event_type",
+          "event_format",
+          "recurring"
+        ]
+      },
+      "UpdateEventDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateRecurrenceRuleDto": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "frequency": {
+            "type": "string",
+            "example": "weekly",
+            "description": "frequency of the recurrence rule"
+          },
+          "interval": {
+            "type": "number",
+            "example": "1",
+            "description": "interval of the recurrence rule"
+          },
+          "week_days": {
+            "example": "Monday",
+            "description": "day of the week",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "month_day": {
+            "type": "number",
+            "example": "1",
+            "description": "day of the month"
+          },
+          "month_week": {
+            "example": "1",
+            "description": "week of the month",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "start_date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2021-01-01",
+            "description": "start date of the recurrence rule"
+          },
+          "end_date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2021-01-01",
+            "description": "end date of the recurrence rule"
+          }
+        },
+        "required": [
+          "event_id",
+          "frequency",
+          "interval",
+          "week_days",
+          "month_day",
+          "month_week",
+          "start_date",
+          "end_date"
+        ]
+      },
+      "UpdateRecurrenceRuleDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateTicketTypeDto": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "ticket_type_name": {
+            "type": "string",
+            "example": "General Admission",
+            "description": "name of the ticket type"
+          },
+          "price": {
+            "type": "number",
+            "example": "50.00",
+            "description": "price of the ticket type"
+          },
+          "quantity_available": {
+            "type": "number",
+            "example": "100",
+            "description": "quantity available of the ticket type"
+          }
+        },
+        "required": [
+          "event_id",
+          "ticket_type_name",
+          "price",
+          "quantity_available"
+        ]
+      },
+      "UpdateTicketTypeDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateVenueDto": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "name": {
+            "type": "string",
+            "example": "art hall",
+            "description": "name of venue"
+          },
+          "location": {
+            "type": "string",
+            "example": "123 Business St, Business City",
+            "description": "address of venue"
+          },
+          "capacity": {
+            "type": "number",
+            "example": "100",
+            "description": "capacity of venue"
+          },
+          "amenities": {
+            "example": "100",
+            "description": "number of restrooms in venue",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "accessibility": {
+            "example": "100",
+            "description": "number of restrooms in venue",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "age_restriction": {
+            "type": "boolean",
+            "example": "100",
+            "description": "number of restrooms in venue"
+          },
+          "seatplan": {
+            "type": "object",
+            "example": "100",
+            "description": "seat map of venue"
+          }
+        },
+        "required": [
+          "event_id",
+          "name",
+          "location",
+          "capacity",
+          "amenities",
+          "accessibility",
+          "age_restriction",
+          "seatplan"
+        ]
+      },
+      "UpdateVenueDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateUserRegistrationDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "UpdateUserRegistrationDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateUserWishlistDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "UpdateUserWishlistDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreatePaymentDto": {
+        "type": "object",
+        "properties": {
+          "ticket_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the associated ticket"
+          },
+          "amount": {
+            "type": "number",
+            "example": 50,
+            "description": "Amount of the payment"
+          },
+          "currency": {
+            "type": "string",
+            "example": "USD",
+            "description": "Currency of the payment"
+          },
+          "method": {
+            "type": "string",
+            "example": "Credit Card",
+            "description": "Method of payment"
+          },
+          "status": {
+            "type": "string",
+            "example": "pending",
+            "description": "Status of the payment"
+          }
+        },
+        "required": [
+          "ticket_id",
+          "amount",
+          "currency",
+          "method",
+          "status"
+        ]
+      },
+      "UpdatePaymentDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateUserTicketDto": {
+        "type": "object",
+        "properties": {
+          "buyer_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of a buyer"
+          },
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "ticket_type_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of a ticket type"
+          },
+          "payment_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of a payment"
+          },
+          "ticket_status": {
+            "type": "string",
+            "example": "1",
+            "description": "id of a ticket status"
+          },
+          "confirmation_code": {
+            "type": "string",
+            "example": "123456",
+            "description": "confirmation code of the ticket"
+          },
+          "qr_code_url": {
+            "type": "string",
+            "example": "https://www.example.com/qr_code",
+            "description": "url of the qr code"
+          },
+          "purchase_date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2021-01-01",
+            "description": "purchase date of the ticket"
+          }
+        },
+        "required": [
+          "buyer_id",
+          "event_id",
+          "ticket_type_id",
+          "payment_id",
+          "ticket_status",
+          "confirmation_code",
+          "qr_code_url",
+          "purchase_date"
+        ]
+      },
+      "UpdateUserTicketDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreatePaymentRefundDto": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of a user"
+          },
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "amount": {
+            "type": "number",
+            "example": "10",
+            "description": "amount to be refund"
+          },
+          "method": {
+            "type": "string",
+            "example": "paypal",
+            "description": "method of refund"
+          },
+          "status": {
+            "type": "string",
+            "example": "pending",
+            "description": "status of refund"
+          }
+        },
+        "required": [
+          "user_id",
+          "event_id",
+          "amount",
+          "method",
+          "status"
+        ]
+      },
+      "UpdatePaymentRefundDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateReviewDto": {
+        "type": "object",
+        "properties": {
+          "buyer_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the buyer"
+          },
+          "vendor_id": {
+            "type": "number",
+            "example": 1,
+            "description": "The ID of the vendor"
+          },
+          "rating": {
+            "type": "number",
+            "example": 5,
+            "description": "Rating given by the buyer"
+          },
+          "review": {
+            "type": "string",
+            "description": "Review text"
+          }
+        },
+        "required": [
+          "buyer_id",
+          "vendor_id",
+          "rating"
+        ]
+      },
+      "UpdateReviewDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      },
+      "CreateRevenueAnalyticDto": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "number",
+            "example": "1",
+            "description": "id of an event"
+          },
+          "total_revenue": {
+            "type": "number",
+            "example": "2021-01-01",
+            "description": "date of the revenue analytic"
+          },
+          "total_tickets_sold": {
+            "type": "number",
+            "example": "1",
+            "description": "number of tickets sold"
+          }
+        },
+        "required": [
+          "event_id",
+          "total_revenue",
+          "total_tickets_sold"
+        ]
+      },
+      "UpdateRevenueAnalyticDto": {
+        "type": "object",
+        "properties": {
+
+        }
+      }
+    }
+  }
+}
